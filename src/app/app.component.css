@@ -6,6 +6,10 @@
     margin-top: 20px;
 }
 
+.answerText {
+    overflow: scroll;
+}
+
 .sizing { 
     width: 420px;
     margin-left: 20px;

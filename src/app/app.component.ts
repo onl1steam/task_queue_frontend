@@ -61,21 +61,23 @@ export class AppComponent {
 
           switch (this.socketTask.kind) {
             case "Перевод":
-                this.socketTask.answer = this.taskJSON["output"]["translated"]
+                this.socketTask.answer = that.checkForNulls(this.taskJSON["output"], this.socketTask.kind)
                 this.socketTask.name = "Перевод " + "\"" + this.taskJSON["input"]["text"] + 
-                "\"" + " на " + this.taskJSON["input"]["lang"]
+                "\"" + " на \"" + this.taskJSON["input"]["lang"] + "\""
               break
             case "Квадратное уравнение":
                 this.socketTask.name = "Коэффициенты: A: " + 
                 this.taskJSON["input"]["a"] + " B: " +
                 this.taskJSON["input"]["b"] + " C: " +  
                 this.taskJSON["input"]["c"]
-                this.socketTask.answer = "Ответ: x1: " + that  .checkForNulls(this.taskJSON["output"]["x1"]) + " x2: " +
-                that.checkForNulls(this.taskJSON["output"]["x2"])
+                this.socketTask.answer = "Ответ: x1: " + that.checkForNulls(this.taskJSON["output"]["x1"], this.socketTask.kind) + 
+                " x2: " +
+                that.checkForNulls(this.taskJSON["output"]["x2"], this.socketTask.kind)
               break
             case "E-mail":
-              this.socketTask.answer = "Текст: \"" + this.taskJSON["input"]["text"] + "\""
-              this.socketTask.name = this.taskJSON["input"]["subject"] + " для " +
+              this.socketTask.answer = "Тема: \"" + this.taskJSON["input"]["subject"] + "\"" +
+              " Текст: \"" + this.taskJSON["input"]["text"] + "\""
+              this.socketTask.name = "Письмо для " +
               this.taskJSON["input"]["to"]
               break
           }
@@ -127,9 +129,17 @@ export class AppComponent {
     fileReader.readAsText(this.fileToUpload);
   }
 
-  public checkForNulls(root) {
-    if (root == null) {
+  public checkForNulls(root, type) {
+    if (root == null && type == "Квадратное уравнение") {
       root = " Нет корня"
+    }
+    if (root == null && type == "Перевод") {
+      root = ""
+    } else if(root != null && type == "Перевод") {
+      root = root["translated"]
+    }
+    if (root == null && type == "E-mail") {
+      root = ""
     }
     return root
   }
