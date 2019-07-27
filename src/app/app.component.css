@@ -18,6 +18,11 @@
     margin-left: 20px;
 }
 
+.input {
+    display: inline;
+    margin-left: 20px;
+}
+
 .item-list {
     border-bottom: 1px groove gray;
 }

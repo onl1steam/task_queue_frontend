@@ -5,9 +5,14 @@
   </h1>
 </div>
 <div class="button-div">
-<button mat-raised-button on-click="addTask()">Добавить</button>
+<button mat-raised-button on-click="uploadTasks()" class="upload-button">Загрузить файл</button>
 <button mat-raised-button on-click="clearTasks()" class="delete-button">Очистить список</button>
-<button mat-raised-button on-click="uploadTasks()" class="delete-button">Загрузить файл</button>
+<div class="form-group input">
+    <input type="file"
+           id="file"
+           accept=".json"
+           (change)="handleFileInput($event.target.files)">
+</div>
 </div>
 <div class="list-div">
 <mat-list class="task-list">

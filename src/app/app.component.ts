@@ -29,17 +29,10 @@ export class AppComponent {
   private serverUrl = 'http://localhost:8080/socket'
   private stompClient;
 
-  body = JSON.stringify([
-    {"kind":"Quadratic equation","input":{"a":24.179989496536646,"b":69.01546678936992,"c":97.51400412803093}},{"kind":"Translation","input":{"lang":"ru","text":"Bye"}},{"kind":"Quadratic equation","input":{"a":52.278068604787364,"b":88.84215950733152,"c":14.278357271831055}},{"kind":"Quadratic equation","input":{"a":61.88690751896717,"b":75.58170253629892,"c":92.2112661477901}},{"kind":"Quadratic equation","input":{"a":8.139653807553715,"b":80.79410884126384,"c":69.53589819438987}}])
+  body 
+  tasks: Task[] = []
 
-  tasks: Task[] = [
-    {
-      name: "Перевести Hi на русский",
-      kind: "Перевод",
-      answer: "Привет",
-      status: "Завершена",
-    }
-  ]
+  fileToUpload: File = null;
 
   socketTask: Task
   taskJSON
@@ -95,17 +88,6 @@ export class AppComponent {
     $('#input').val('');
   }
 
-  public addTask() {
-    this.tasks.unshift(
-      {
-        name: "Перевести Hi на русский",
-        kind: "Перевод",
-        answer: "Привет",
-        status: "Завершена",
-      }
-    );
-  }
-
   public clearTasks() {
     this.tasks = []
   }
@@ -121,6 +103,16 @@ export class AppComponent {
       article => {
         console.log(this.body);
       })
+  }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    let fileReader = new FileReader();
+    fileReader.onload = (e) => {
+    this.body = JSON.parse(JSON.stringify(fileReader.result));
+    this.uploadTasks()
+    }
+    fileReader.readAsText(this.fileToUpload);
   }
 
   public checkForNulls(root) {
