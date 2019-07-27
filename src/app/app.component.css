@@ -1,0 +1,32 @@
+.task {
+    display: inline;
+}
+
+.list-div {
+    margin-top: 20px;
+    height: 520px;
+    width: 100%;
+    overflow-y: scroll;
+    border: 1px solid gray;
+}
+
+.button-div {
+    display: inline;
+}
+
+.delete-button {
+    margin-left: 20px;
+}
+
+.item-list {
+    border-bottom: 1px groove gray;
+}
+
+.status {
+    display: inline;
+    margin-left: 20px;
+}
+
+.z-depth {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+}

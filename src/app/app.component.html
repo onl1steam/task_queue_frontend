@@ -1,0 +1,21 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Отображение выполненных задач
+  </h1>
+</div>
+<div class="button-div">
+<button mat-raised-button on-click="addTask()">Добавить</button>
+<button mat-raised-button on-click="clearTasks()" class="delete-button">Очистить список</button>
+<button mat-raised-button on-click="uploadTasks()" class="delete-button">Загрузить файл</button>
+</div>
+<div class="list-div">
+<mat-list class="task-list">
+  <mat-list-item class="z-depth" *ngFor="let task of tasks">
+      <h2 mat-line>{{task.kind}}</h2> 
+      <h5>{{task.status}}</h5>
+      <h4 mat-line>{{task.name}}</h4>
+      <h4 mat-line>{{task.answer}}</h4>
+  </mat-list-item>
+</mat-list>
+</div>
