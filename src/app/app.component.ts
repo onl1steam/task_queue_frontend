@@ -29,7 +29,9 @@ export class AppComponent {
   private serverUrl = 'http://localhost:8080/socket'
   private stompClient;
 
-  body 
+  fileName = "Выберете файл"
+
+  body = ""
   tasks: Task[] = []
 
   fileToUpload: File = null;
@@ -58,22 +60,23 @@ export class AppComponent {
           this.socketTask.status = this.taskJSON["status"]
 
           switch (this.socketTask.kind) {
-            case "Translation":
-                this.socketTask.answer = this.taskJSON["input"]["text"]
-                this.socketTask.name = "Перевод " + "\"" + this.taskJSON["output"]["translated"] + 
+            case "Перевод":
+                this.socketTask.answer = this.taskJSON["output"]["translated"]
+                this.socketTask.name = "Перевод " + "\"" + this.taskJSON["input"]["text"] + 
                 "\"" + " на " + this.taskJSON["input"]["lang"]
               break
-            case "Quadratic equation":
-                this.socketTask.name = "A: " + 
+            case "Квадратное уравнение":
+                this.socketTask.name = "Коэффициенты: A: " + 
                 this.taskJSON["input"]["a"] + " B: " +
                 this.taskJSON["input"]["b"] + " C: " +  
                 this.taskJSON["input"]["c"]
-                this.socketTask.answer = "x1: " + that  .checkForNulls(this.taskJSON["output"]["x1"]) + " x2: " +
+                this.socketTask.answer = "Ответ: x1: " + that  .checkForNulls(this.taskJSON["output"]["x1"]) + " x2: " +
                 that.checkForNulls(this.taskJSON["output"]["x2"])
               break
             case "E-mail":
-              this.socketTask.answer = ""
-              this.socketTask.name = ""
+              this.socketTask.answer = "Текст: \"" + this.taskJSON["input"]["text"] + "\""
+              this.socketTask.name = this.taskJSON["input"]["subject"] + " для " +
+              this.taskJSON["input"]["to"]
               break
           }
 
@@ -93,6 +96,11 @@ export class AppComponent {
   }
 
   public uploadTasks() {
+    console.log(this.body)
+    if (this.body == "") {
+      alert("Нет файла")
+      return
+    }
     let httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json'
     });    
@@ -103,13 +111,17 @@ export class AppComponent {
       article => {
         console.log(this.body);
       })
+    this.fileName = "Выберете файл"
+    $("#file")[0].value = "";
   }
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
     let fileReader = new FileReader();
+    this.fileName = this.fileToUpload.name;
     fileReader.onload = (e) => {
-    this.body = JSON.parse(JSON.stringify(fileReader.result));
+    let parsedJSON = JSON.parse(JSON.stringify(fileReader.result));
+    this.body = parsedJSON;
     this.uploadTasks()
     }
     fileReader.readAsText(this.fileToUpload);

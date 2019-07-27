@@ -1,24 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<div style="text-align:center" class="header">
   <h1>
     Отображение выполненных задач
   </h1>
 </div>
 <div class="button-div">
-<button mat-raised-button on-click="uploadTasks()" class="upload-button">Загрузить файл</button>
-<button mat-raised-button on-click="clearTasks()" class="delete-button">Очистить список</button>
-<div class="form-group input">
-    <input type="file"
-           id="file"
-           accept=".json"
-           (change)="handleFileInput($event.target.files)">
+    <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input sizing" id="file" accept=".json" (change)="handleFileInput($event.target.files)">
+          <label class="custom-file-label sizing" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">{{fileName}}</label>
+        </div>
 </div>
+<!-- <button on-click="uploadTasks()" class="upload-button btn btn-secondary">Загрузить файл</button> -->
+<button on-click="clearTasks()" class="delete-button btn btn-secondary">Очистить список</button>
 </div>
 <div class="list-div">
 <mat-list class="task-list">
   <mat-list-item class="z-depth" *ngFor="let task of tasks">
       <h2 mat-line>{{task.kind}}</h2> 
-      <h5>{{task.status}}</h5>
+      <h6>{{task.status}}</h6>
       <h4 mat-line>{{task.name}}</h4>
       <h4 mat-line>{{task.answer}}</h4>
   </mat-list-item>

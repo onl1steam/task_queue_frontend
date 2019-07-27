@@ -2,20 +2,41 @@
     display: inline;
 }
 
-.list-div {
+.header {
     margin-top: 20px;
-    height: 520px;
-    width: 100%;
+}
+
+.sizing { 
+    width: 420px;
+    margin-left: 20px;
+}
+
+.list-div {
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    height: 500px;
     overflow-y: scroll;
     border: 1px solid gray;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.upload-button {
+    position: absolute;
+    display: inline;
+    left: 460px;
+    top: 118px;
 }
 
 .button-div {
-    display: inline;
+    margin-top: 50px;
 }
 
 .delete-button {
-    margin-left: 20px;
+    position: absolute;
+    display: inline;
+    right: 20px;
+    top: 118px;
 }
 
 .input {
