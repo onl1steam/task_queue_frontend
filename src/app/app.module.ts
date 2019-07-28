@@ -10,6 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
   declarations: [
     AppComponent
   ],
+  // Подключение модулей библиотек 
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -1,9 +1,10 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<!-- Заголовок -->
 <div style="text-align:center" class="header">
   <h1>
     Отображение выполненных задач
   </h1>
 </div>
+<!-- Кнопка загрузки файла -->
 <div class="button-div">
     <div class="input-group mb-3">
         <div class="custom-file">
@@ -11,9 +12,10 @@
           <label class="custom-file-label sizing" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">{{fileName}}</label>
         </div>
 </div>
-<!-- <button on-click="uploadTasks()" class="upload-button btn btn-secondary">Загрузить файл</button> -->
+<!-- Кнопка очистки списка задач -->
 <button on-click="clearTasks()" class="delete-button btn btn-secondary">Очистить список</button>
 </div>
+<!-- Список задач -->
 <div class="list-div">
 <mat-list class="task-list">
   <mat-list-item class="z-depth" *ngFor="let task of tasks">
@@ -21,7 +23,6 @@
       <h6>{{task.status}}</h6>
       <h4 mat-line>{{task.name}}</h4>
       <h4 mat-line>{{task.answer}}</h4>
-      
   </mat-list-item>
 </mat-list>
 </div>

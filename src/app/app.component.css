@@ -1,20 +1,15 @@
-.task {
-    display: inline;
-}
-
+/* Заголовок */
 .header {
     margin-top: 20px;
 }
 
-.answerText {
-    overflow: scroll;
-}
-
+/* Размер input элемента */
 .sizing { 
     width: 420px;
     margin-left: 20px;
 }
 
+/* Список задач */
 .list-div {
     margin-right: 20px;
     margin-left: 20px;
@@ -25,17 +20,12 @@
     background: rgba(255, 255, 255, 0.6);
 }
 
-.upload-button {
-    position: absolute;
-    display: inline;
-    left: 460px;
-    top: 118px;
-}
-
+/* Кнопка загрузки файла */
 .button-div {
     margin-top: 50px;
 }
 
+/* Кнопка очистки поля */
 .delete-button {
     position: absolute;
     display: inline;
@@ -43,20 +33,7 @@
     top: 118px;
 }
 
-.input {
-    display: inline;
-    margin-left: 20px;
-}
-
-.item-list {
-    border-bottom: 1px groove gray;
-}
-
-.status {
-    display: inline;
-    margin-left: 20px;
-}
-
+/* Устанавливает тени для блока из списка задач */
 .z-depth {
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
 }
